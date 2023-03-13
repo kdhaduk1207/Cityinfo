@@ -1,0 +1,35 @@
+<div class="card">
+    <div class="card-header">
+        City Details
+      </div>
+      <div class="card-body">
+         <form [formGroup]="cityInfoForm">
+            <div class="form-group row mb-2">
+                <label class="col-md-2 col-form-label"
+                for="cityName">Name</label>
+                <div class="col-md-8">
+                    <input class="form-control"
+                           id="cityName"
+                           type="text"
+                           placeholder="Name (required)"                           
+                           formControlName="name"
+                            />
+                    
+                  </div>
+            </div>
+            <div class="form-group row mb-2">
+                <label class="col-md-2 col-form-label"
+                for="cityDesc">Description</label>
+                <div class="col-md-8">
+                    <input class="form-control"
+                           id="cityDesc"
+                           type="text"
+                           placeholder="Description (required)"                           
+                           formControlName="description"
+                            />
+                    
+                  </div>
+            </div>
+         </form>
+      </div>
+</div>
