@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CityService } from './citydetail.service';
+import { CityDto } from './model/citydetail';
 
 @Component({
   selector: 'ci-city-detail',
@@ -10,9 +12,11 @@ export class CityDetailComponent implements OnInit   {
  
   cityInfoForm : FormGroup;
   showDetails : boolean = true;
+  cityDtl: CityDto;
   
-  constructor(private formBuilder:FormBuilder)
+  constructor(private formBuilder:FormBuilder,private cityService : CityService)
   {
+    this.cityDtl = new CityDto();
     this.cityInfoForm = this.formBuilder.group(
       {
         name:['',[Validators.required,Validators.maxLength(50)]],
@@ -27,6 +31,17 @@ export class CityDetailComponent implements OnInit   {
 
   save()
   {
+
+    const cityCreate = { ...this.cityDtl, ...this.cityInfoForm.value };
+   
+    this.cityService.createCity(cityCreate).subscribe(
+      {
+        next: () => { this.cityInfoForm.reset(); },
+        error: err => console.log(err)
+      }
+    );
+
+
       console.log(this.cityInfoForm);
   }
 
